@@ -9,13 +9,19 @@ import SwiftUI
 
 struct ContentView: View {
     var body: some View {
-        VStack {
-            Image(systemName: "globe")
-                .imageScale(.large)
-                .foregroundStyle(.tint)
-            Text("Hello, world!")
+        NavigationStack {
+            List {
+                Section {
+                } header: {
+                    Text("Connected")
+                }
+                Section {
+                } header: {
+                    Text("On my network")
+                }
+            }
+            .navigationTitle("Local Chat")
         }
-        .padding()
     }
 }
 

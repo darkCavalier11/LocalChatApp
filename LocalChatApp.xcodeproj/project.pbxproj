@@ -44,6 +44,7 @@
 		952726012BF770E600B4F57E /* LocalChatAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalChatAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		952726052BF770E600B4F57E /* LocalChatAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalChatAppUITests.swift; sourceTree = "<group>"; };
 		952726072BF770E600B4F57E /* LocalChatAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalChatAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
+		952726142BF7736800B4F57E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -94,6 +95,7 @@
 		952725E92BF770E400B4F57E /* LocalChatApp */ = {
 			isa = PBXGroup;
 			children = (
+				952726142BF7736800B4F57E /* Info.plist */,
 				952725EA2BF770E400B4F57E /* LocalChatAppApp.swift */,
 				952725EC2BF770E400B4F57E /* ContentView.swift */,
 				952725EE2BF770E500B4F57E /* Assets.xcassets */,
@@ -424,6 +426,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"LocalChatApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LocalChatApp/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To chat with peers on my local network";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -452,6 +456,8 @@
 				DEVELOPMENT_ASSET_PATHS = "\"LocalChatApp/Preview Content\"";
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = LocalChatApp/Info.plist;
+				INFOPLIST_KEY_NSLocalNetworkUsageDescription = "To chat with peers on my local network";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
