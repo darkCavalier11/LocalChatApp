@@ -14,6 +14,7 @@
 		952725FC2BF770E600B4F57E /* LocalChatAppTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952725FB2BF770E600B4F57E /* LocalChatAppTests.swift */; };
 		952726062BF770E600B4F57E /* LocalChatAppUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952726052BF770E600B4F57E /* LocalChatAppUITests.swift */; };
 		952726082BF770E600B4F57E /* LocalChatAppUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952726072BF770E600B4F57E /* LocalChatAppUITestsLaunchTests.swift */; };
+		952726162BF7B40700B4F57E /* LocalNetworkSessionCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 952726152BF7B40700B4F57E /* LocalNetworkSessionCoordinator.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -45,6 +46,7 @@
 		952726052BF770E600B4F57E /* LocalChatAppUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalChatAppUITests.swift; sourceTree = "<group>"; };
 		952726072BF770E600B4F57E /* LocalChatAppUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalChatAppUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		952726142BF7736800B4F57E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		952726152BF7B40700B4F57E /* LocalNetworkSessionCoordinator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalNetworkSessionCoordinator.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -98,6 +100,7 @@
 				952726142BF7736800B4F57E /* Info.plist */,
 				952725EA2BF770E400B4F57E /* LocalChatAppApp.swift */,
 				952725EC2BF770E400B4F57E /* ContentView.swift */,
+				952726152BF7B40700B4F57E /* LocalNetworkSessionCoordinator.swift */,
 				952725EE2BF770E500B4F57E /* Assets.xcassets */,
 				952725F02BF770E500B4F57E /* Preview Content */,
 			);
@@ -261,6 +264,7 @@
 			files = (
 				952725ED2BF770E400B4F57E /* ContentView.swift in Sources */,
 				952725EB2BF770E400B4F57E /* LocalChatAppApp.swift in Sources */,
+				952726162BF7B40700B4F57E /* LocalNetworkSessionCoordinator.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

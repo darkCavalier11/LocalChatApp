@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var localNetwork = LocalNetworkSessionCoordinator()
     var body: some View {
         NavigationStack {
             List {
@@ -16,11 +17,22 @@ struct ContentView: View {
                     Text("Connected")
                 }
                 Section {
+                    ForEach(Array(localNetwork.availableDevices), id: \.self) { peerID in
+                        Text(peerID.displayName)
+                    }
                 } header: {
                     Text("On my network")
                 }
             }
             .navigationTitle("Local Chat")
+        }
+        .onAppear {
+            localNetwork.startBrowsing()
+            localNetwork.startAdvertising()
+        }
+        .onDisappear {
+            localNetwork.stopBrowing()
+            localNetwork.stopAdvertising()
         }
     }
 }
