@@ -14,7 +14,12 @@ class LocalNetworkSessionCoordinator: NSObject {
     private let browser: MCNearbyServiceBrowser
     private let session: MCSession
     
-    private(set) var availableDevices: Set<MCPeerID> = []
+    private(set) var allDevices: Set<MCPeerID> = []
+    private(set) var connectedDevices: Set<MCPeerID> = []
+    var otherDevices: Set<MCPeerID> {
+        return allDevices.subtracting(connectedDevices)
+    }
+    
     
     init(peerID: MCPeerID = .init(displayName: UIDevice.current.name)) {
         advertiser = .init(
@@ -31,6 +36,7 @@ class LocalNetworkSessionCoordinator: NSObject {
         
         browser.delegate = self
         advertiser.delegate = self
+        session.delegate = self
     }
     
     public func startAdvertising() {
@@ -47,6 +53,28 @@ class LocalNetworkSessionCoordinator: NSObject {
     
     public func stopBrowing() {
         browser.stopBrowsingForPeers()
+    }
+    
+    public func invitePeer(peerID: MCPeerID) {
+        browser.invitePeer(
+            peerID,
+            to: session,
+            withContext: nil,
+            timeout: 120
+        )
+    }
+    
+    public func sendHello(peerID: MCPeerID) throws {
+        try session.send(
+            "Hello, World ❤️.".data(using: .utf8)!,
+            toPeers: [peerID],
+            // .reliable = TCP
+            // .unreliable = UDP
+            // Remember that we have added two set of configuration on the Info.plist
+            // file at the time of configuration. We want guranteed message delivery
+            // so we choose TCP/.reliable.
+            with: .reliable
+        )
     }
 }
 
@@ -67,16 +95,66 @@ extension LocalNetworkSessionCoordinator: MCNearbyServiceBrowserDelegate {
         foundPeer peerID: MCPeerID,
         withDiscoveryInfo info: [String : String]?
     ) {
-        availableDevices.insert(peerID)
+        allDevices.insert(peerID)
     }
     
     func browser(
         _ browser: MCNearbyServiceBrowser,
         lostPeer peerID: MCPeerID
     ) {
-        availableDevices.remove(peerID)
+        allDevices.remove(peerID)
     }
     
+}
+
+extension LocalNetworkSessionCoordinator: MCSessionDelegate {
+    func session(
+        _ session: MCSession,
+        peer peerID: MCPeerID,
+        didChange state: MCSessionState
+    ) {
+        if state == .connected {
+            connectedDevices.insert(peerID)
+        } else {
+            connectedDevices.remove(peerID)
+        }
+    }
+    
+    func session(
+        _ session: MCSession,
+        didReceive data: Data,
+        fromPeer peerID: MCPeerID
+    ) {
+        
+    }
+    
+    func session(
+        _ session: MCSession,
+        didReceive stream: InputStream,
+        withName streamName: String,
+        fromPeer peerID: MCPeerID
+    ) {
+        
+    }
+    
+    func session(
+        _ session: MCSession,
+        didStartReceivingResourceWithName resourceName: String,
+        fromPeer peerID: MCPeerID,
+        with progress: Progress
+    ) {
+        
+    }
+    
+    func session(
+        _ session: MCSession,
+        didFinishReceivingResourceWithName resourceName: String,
+        fromPeer peerID: MCPeerID,
+        at localURL: URL?,
+        withError error: (any Error)?
+    ) {
+        
+    }
 }
 
 private extension String {

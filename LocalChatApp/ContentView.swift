@@ -13,12 +13,31 @@ struct ContentView: View {
         NavigationStack {
             List {
                 Section {
+                    ForEach(Array(localNetwork.connectedDevices), id: \.self) { peerID in
+                        HStack {
+                            Text(peerID.displayName)
+                            Spacer()
+                            Button {
+                                
+                            } label: {
+                                Image(systemName: "paperplane")
+                            }
+                        }
+                    }
                 } header: {
                     Text("Connected")
                 }
                 Section {
-                    ForEach(Array(localNetwork.availableDevices), id: \.self) { peerID in
-                        Text(peerID.displayName)
+                    ForEach(Array(localNetwork.otherDevices), id: \.self) { peerID in
+                        HStack {
+                            Text(peerID.displayName)
+                            Spacer()
+                            Button {
+                                localNetwork.invitePeer(peerID: peerID)
+                            } label: {
+                                Image(systemName: "plus.circle")
+                            }
+                        }
                     }
                 } header: {
                     Text("On my network")
