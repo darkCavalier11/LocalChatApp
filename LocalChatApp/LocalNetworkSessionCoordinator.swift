@@ -19,6 +19,7 @@ class LocalNetworkSessionCoordinator: NSObject {
     var otherDevices: Set<MCPeerID> {
         return allDevices.subtracting(connectedDevices)
     }
+    private(set) var message: String = ""
     
     
     init(peerID: MCPeerID = .init(displayName: UIDevice.current.name)) {
@@ -125,7 +126,10 @@ extension LocalNetworkSessionCoordinator: MCSessionDelegate {
         didReceive data: Data,
         fromPeer peerID: MCPeerID
     ) {
-        
+        guard let text = String(data: data, encoding: .utf8) else {
+            return
+        }
+        message = "\(peerID.displayName) => \(text)"
     }
     
     func session(

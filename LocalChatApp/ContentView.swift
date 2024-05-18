@@ -9,6 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     @State private var localNetwork = LocalNetworkSessionCoordinator()
+    @State private var showAlert = false
+    @State private var alertText = ""
     var body: some View {
         NavigationStack {
             List {
@@ -18,7 +20,7 @@ struct ContentView: View {
                             Text(peerID.displayName)
                             Spacer()
                             Button {
-                                
+                                try? localNetwork.sendHello(peerID: peerID)
                             } label: {
                                 Image(systemName: "paperplane")
                             }
@@ -44,6 +46,15 @@ struct ContentView: View {
                 }
             }
             .navigationTitle("Local Chat")
+        }
+        .onChange(of: localNetwork.message) { _, newValue in
+            alertText = newValue
+            showAlert = true
+        }
+        .alert("Received a message", isPresented: $showAlert) {
+            
+        } message: {
+            Text(alertText)
         }
         .onAppear {
             localNetwork.startBrowsing()
